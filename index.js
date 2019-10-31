@@ -9,6 +9,7 @@ let images = [];
 
 const directoryPath = path.join(__dirname, PATH);
 
+const hrstart = process.hrtime()
 fs.readdir(directoryPath, async (err, files) => {
     if(err){
         return console.log("Diretório não acessível ", err);
@@ -38,8 +39,10 @@ fs.readdir(directoryPath, async (err, files) => {
     await Promise.all(promises);
 
     fs.writeFile("files.json", JSON.stringify(images), (err) => {
+        let hrend = process.hrtime(hrstart);
         if(err) console.log("Erro ao criar arquivo de mapeamento ", err);
-        console.log("Carga finalizada");
+        console.log("Carga finalizada em %ds %dms", hrend[0], hrend[1] / 1000000);
     });
+
     
 });
