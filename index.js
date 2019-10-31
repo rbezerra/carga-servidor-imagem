@@ -3,7 +3,6 @@ const path = require("path");
 const FormData = require("form-data");
 const axios = require("axios");
 
-//receber um caminho válido nos argumentos
 const PATH = process.argv[2];
 const IMAGE_SERVER_ADDRESS = process.argv[3];
 let images = [];
@@ -40,7 +39,6 @@ fs.readdir(directoryPath, async (err, files) => {
 
     fs.writeFile("files.json", JSON.stringify(images), (err) => {
         if(err) console.log("Erro ao criar arquivo de mapeamento ", err);
-    
         console.log("Carga finalizada");
     });
     
